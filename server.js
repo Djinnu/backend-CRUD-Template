@@ -2,11 +2,11 @@ const express = require('express')
 const app = express()
 const MongoClient = require('mongodb').MongoClient
 const PORT = 8000
-//const cors = require('cors')
-//const { response } = require('express')
+const cors = require('cors')
+const { response } = require('express')
 require('dotenv').config()
 
-//app.use(cors())
+app.use(cors())
 
 let db,
     dbConnectionStr = process.env.DB_STRING,
@@ -23,6 +23,7 @@ app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
+
 app.get('/', (req, res) => {
     db.collection('songs').find().sort({likes: -1}).toArray()
     .then(data => {
@@ -32,14 +33,16 @@ app.get('/', (req, res) => {
 })
 
 
-/*app.get('/api/:role', (req, res) => {
-    const roleName = req.params.role.toLowerCase()
-    if(amongUs[roleName]) {
-        res.json(amongUs[roleName])
-    } else {
-        res.json(amongUs['unknown'])
-    }
-})*/
+app.get('/api/:songName', (req, res) => {
+    const songName = req.params.songName
+    console.log(songName)
+    db.collection('songs').find({'title': songName}).toArray()
+    .then(data => {
+        res.json(data)
+    })
+    .catch(error => console.error(error))
+})
+
 
 app.post('/addSong', (req, res) => {
     db.collection('songs').insertOne({title: req.body.title,
