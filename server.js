@@ -24,12 +24,13 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
 app.get('/', (req, res) => {
-    db.collection('songs').find().sort({likes:-1}).toArray()
+    db.collection('songs').find().sort({likes: -1}).toArray()
     .then(data => {
-        response.render('index.ejs', {info: data})
+        res.render('index.ejs', {info: data})
     })
     .catch(error => console.error(error))
 })
+
 
 /*app.get('/api/:role', (req, res) => {
     const roleName = req.params.role.toLowerCase()
@@ -43,7 +44,7 @@ app.get('/', (req, res) => {
 app.post('/addSong', (req, res) => {
     db.collection('songs').insertOne({title: req.body.title,
     artist: req.body.artist,
-    url: req.body.url, likes: 0})
+    id: req.body.id, likes: 0})
     .then(result => {
         console.log('Song added')
         res.redirect('/')
@@ -61,7 +62,7 @@ app.put('/addOneLike', (req, res) => {
     })
     .then(result => {
         console.log('Added one like')
-        response.json('Like added')
+        res.json('Like added')
     })
     .catch(error => console.error(error))
 })
@@ -70,7 +71,7 @@ app.delete('/deleteSong', (req, res) => {
     db.collection('songs').deleteOne({title: req.body.title})
     .then(result => {
         console.log('Song deleted')
-        response.json('Song Deleted')
+        res.json('Song Deleted')
     })
     .catch(error => console.error(error))
 })

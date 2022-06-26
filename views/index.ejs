@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/e5a8cfb859.js" crossorigin="anonymous"></script>
     <title>Rate My Vibes</title>
 </head>
 <body>
@@ -14,6 +15,8 @@
                 <span><%=info[i].title %></span>
                 <span><%=info[i].artist %></span>
                 <span><%=info[i].likes %></span>
+                <i class="fa-solid fa-thumbs-up"></i>
+                <i class="fa-solid fa-trash"></i>
             </li>
         <% } %>
     </ul>
@@ -22,9 +25,10 @@
     <form action="/addSong" method="POST">
         <input type="text" placeholder="Title" name="title">
         <input type="text" placeholder="Artist" name="artist">
-        <input type="text" placeholder="Url" name="url">
+        <input type="text" placeholder="video ID" name="id">
         <input type="submit">
     </form>
-    <script src="js/main.js"></script>
+    <iframe width="440" height="372" src="https://www.youtube.com/embed/RXu62hENi1Y/?controls=1"></iframe>
+    <script src='js/main.js'></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
-const deleteText = document.querySelectorAll('')
-const thumbText = document.querySelectorAll('')
+const deleteText = document.querySelectorAll('.fa-trash')
+const thumbText = document.querySelectorAll('.fa-thumbs-up')
+
 
 Array.from(deleteText).forEach(x => x.addEventListener('click', deleteSong))
 Array.from(thumbText).forEach(x => x.addEventListener('click', addLike))
@@ -40,7 +41,7 @@ async function addLike() {
         })
         const data = await response.json()
         console.log(data)
-        location.reload()
+        //location.reload()
     } catch(err) {
         console.log(err)
     }
