@@ -41,7 +41,7 @@ async function addLike() {
         })
         const data = await response.json()
         console.log(data)
-        //location.reload()
+        location.reload()
     } catch(err) {
         console.log(err)
     }
