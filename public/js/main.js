@@ -9,8 +9,6 @@ Array.from(liText).forEach(x => x.addEventListener('click', findSong))
 
 
 async function findSong(e) {
-    //const sName = this.parentNode.childNodes[1].innerText
-    //const bName = this.parentNode.childNodes[3].innerText
     const param = e.target.innerText
     try {
         const response = await fetch(`http://localhost:8000/api/${param}`)
